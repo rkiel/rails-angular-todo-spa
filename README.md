@@ -1,7 +1,23 @@
 ## Rails Angular Todo
 
-#### A simple to-do list experiment with Rails and Angular
+#### A simple to-do list experiment with Rails and Angular as a Single Page App
 
+Create the project
+
+```unix
+mkdir -p ~/GitHub/rkiel
+cd ~/GitHub/rkiel
+git clone git@github.com:rkiel/rails-angular-todo-spa.git
+cd rails-angular-todo-spa
+```
+
+Stage your SSH credentials (for use with Heroku)
+
+```unix
+cp ~/.ssh/id_rsa .
+cp ~/.ssh/id_rsa.pub .
+cp ~/.ssh/known_hosts .
+```
 
 Create the vagrant server.
 
