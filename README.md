@@ -122,6 +122,25 @@ Update `app/controllers/application_controller.rb`
 
 [application_controller.rb](https://gist.github.com/rkiel/52e7ad74444005724880)
 
+Replace `app/assets/javascripts/application.js`
+
+```javascript
+//= require app
+//= require_tree ./todo
+```
+
+Create `app/assets/javascripts/app.js`
+
+[app.js](https://gist.github.com/rkiel/857823a77b30edf88e22)
+
+Update `config/initializers/inflections.rb`
+
+```ruby
+inflect.acronym 'API'
+```
+
+Generate User model
+
 ```unix
 rails generate model user first last email:index uuid:index password_digest
 ```
@@ -186,6 +205,3 @@ Text
 * [Backend Integration with Ruby on Rails](http://fdietz.github.io/recipes-with-angular-js/backend-integration-with-ruby-on-rails/index.html)
 * [BUILDING AWESOME RAILS APIS: PART 1]\](http://collectiveidea.com/blog/archives/2013/06/13/building-awesome-rails-apis-part-1/)
 * [Ruby On Rails Tutorial](https://www.railstutorial.org/book/beginning)
-
-
-
