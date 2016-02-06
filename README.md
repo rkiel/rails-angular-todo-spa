@@ -32,7 +32,7 @@ vagrant ssh rails
 cd /vagrant
 ```
 
-Create the Rails project (first time)
+Create the Rails project
 ```unix
 rails new .
 echo .vagrant >> .gitignore
@@ -75,6 +75,8 @@ Install the gems.
 ```unix
 rm -f Gemfile.lock
 bundle install
+git add Gemfile*
+git commit -m "bundle install"
 ```
 
 Initialize the database.
@@ -84,6 +86,8 @@ rm -f db/development.sqlite3
 rm -f db/test.sqlite3
 rake db:migrate
 rake db:migrate RAILS_ENV=test
+git add db/schema.rb
+git commit -m "db migrate"
 ```
 
 Start the rails server.
@@ -96,7 +100,7 @@ Open up your browser.
 
 [http://192.168.33.10:3000](http://192.168.33.10:3000)
 
-
+#### Build your application
 
 ```unix
 rails generate model user first last email:index uuid:index password_digest
