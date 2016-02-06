@@ -65,7 +65,7 @@ end
 
 group :development do
   gem 'netrc'
-  gem 'rest_client'
+  gem 'rest-client'
   gem 'heroku-api'
 end
 ```
