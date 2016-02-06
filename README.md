@@ -32,10 +32,27 @@ vagrant ssh rails
 cd /vagrant
 ```
 
+Create the Rails project (first time)
+```unix
+rails new .
+echo .vagrant >> .gitignore
+echo .rvmrc >> .gitignore
+echo node_modules >> .gitignore
+rm README.rdoc
+git add .gitignore Gemfile* Rakefile app bin config* db lib log public test vendor
+git commit -m "rails new"
+```
+
 Update Gemfile to be compatable with Heroku.
 
 ```ruby
 ruby "2.2.4"
+
+gem 'therubyracer', platforms: :ruby
+
+gem 'bcrypt', '~> 3.1.7'
+
+gem 'jwt', '~> 1.5.2'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
@@ -45,11 +62,18 @@ end
 group :production do
   gem 'pg'
 end
+
+group :development do
+  gem 'netrc'
+  gem 'rest_client'
+  gem 'heroku-api'
+end
 ```
 
 Install the gems.
 
 ```unix
+rm -f Gemfile.lock
 bundle install
 ```
 
@@ -131,6 +155,7 @@ Text
 * [Secure Your REST API... The Right Way](https://stormpath.com/blog/secure-your-rest-api-right-way/)
 * [Angular Style Guide](https://github.com/johnpapa/angular-styleguide)
 * [Backend Integration with Ruby on Rails](http://fdietz.github.io/recipes-with-angular-js/backend-integration-with-ruby-on-rails/index.html)
+* [BUILDING AWESOME RAILS APIS: PART 1]\](http://collectiveidea.com/blog/archives/2013/06/13/building-awesome-rails-apis-part-1/)
 * [Ruby On Rails Tutorial](https://www.railstutorial.org/book/beginning)
 
 
