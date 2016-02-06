@@ -102,6 +102,26 @@ Open up your browser.
 
 #### Build your application
 
+Autoload `lib`
+
+```ruby
+gvim config/application.rb
+
+config.autoload_paths << Rails.root.join('lib')
+```
+
+Create `lib/angular_csrf_protection.rb`
+
+[angular_csrf_protection.rb](https://gist.github.com/rkiel/26e67a53938d566d492d)
+
+Create `lib/json_web_token.rb`
+
+[json_web_token.rb](https://gist.github.com/rkiel/e396cfa16c2ac4c84d0c)
+
+Update `app/controllers/application_controller.rb`
+
+[application_controller.rb](https://gist.github.com/rkiel/52e7ad74444005724880)
+
 ```unix
 rails generate model user first last email:index uuid:index password_digest
 ```
