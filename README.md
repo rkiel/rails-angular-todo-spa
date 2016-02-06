@@ -102,11 +102,15 @@ Open up your browser.
 
 #### Build your application
 
-Autoload `lib`
+Enable autoload of files in `lib`
+
+```unix
+gvim config/application.rb
+```
+
+Add
 
 ```ruby
-gvim config/application.rb
-
 config.autoload_paths << Rails.root.join('lib')
 ```
 
@@ -136,7 +140,9 @@ Create `app/assets/javascripts/app.js`
 Update `config/initializers/inflections.rb`
 
 ```ruby
-inflect.acronym 'API'
+ActiveSupport::Inflector.inflections(:en) do |inflect|
+  inflect.acronym 'API'
+end
 ```
 
 Generate User model
