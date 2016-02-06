@@ -106,8 +106,6 @@ Open up your browser.
 rails generate model user first last email:index uuid:index password_digest
 ```
 
-
-
 #### Deploy to heroku
 
 Login to your Heroku account
@@ -143,8 +141,12 @@ heroku run rake db:migrate
 
 Open up your browser.
 
-[https://still-hollows-56878.herokuapp.com](https://still-hollows-56878.herokuapp.com)
+[https://secure-springs-23520.herokuapp.com](https://secure-springs-23520.herokuapp.com)
 
+
+#### Switch Heroku to use Puma
+
+[Deploying Rails Applications with the Puma Web Server](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server)
 
 ##### Resources
 
