@@ -122,9 +122,12 @@ Create a new project
 heroku create
 ```
 
+Set your secret key
+
+```unix
 heroku config:set SECRET_KEY_BASE=`rake secret`
 heroku config:get SECRET_KEY_BASE
-
+```
 
 Push your code to Heroku
 
