@@ -12,6 +12,5 @@
 //
 //= require app
 //= require_tree ./config
-// //= require_tree ./todo
 //= require_tree ./home
 //= require_tree ./away
