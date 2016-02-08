@@ -3,7 +3,8 @@
 
   var dependencies = [
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'ngMaterial',
   ];
 
   angular

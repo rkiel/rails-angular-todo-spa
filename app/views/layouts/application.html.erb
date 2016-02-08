@@ -4,11 +4,19 @@
   <title>Angular Rails</title>
   <%= favicon_link_tag %>
   <base href="/">
+  <%= stylesheet_link_tag    'https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.css' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
   <%= javascript_include_tag 'https://code.jquery.com/jquery-2.2.0.min.js' %>
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js' %>
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-resource.min.js' %>
   <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js' %>
+
+  <!-- Angular Material and Dependencies -->
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-aria.min.js' %>
+  <%= javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/angular_material/1.0.5/angular-material.min.js' %>
+
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
