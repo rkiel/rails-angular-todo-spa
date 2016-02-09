@@ -5,9 +5,9 @@
   .module('application')
   .controller('SignupController', SignupController);
 
-  SignupController.$inject = ['$log','$location'];
+  SignupController.$inject = ['$log','$location','SignupResource'];
 
-  function SignupController($log,$location) {
+  function SignupController($log,$location,SignupResource) {
 
     var vm = this;
     vm.first    = '';
@@ -34,6 +34,22 @@
       var vm = this;
 
       if (vm.valid()) {
+
+        SignupResource
+        .create({user: {
+          first:                 vm.first,
+          last:                  vm.last,
+          email:                 vm.email,
+          password:              vm.password,
+          password_confirmation: vm.password_confirmation
+        }})
+        .$promise
+        .then(function success(signup) {
+          $log.info(signup);
+        })
+        .catch(function error(err) {
+          $log.error(err);
+        });
 
       }
 
