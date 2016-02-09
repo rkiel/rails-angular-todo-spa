@@ -18,6 +18,7 @@
     vm.valid = valid;
     vm.create = create;
     vm.cancel = cancel;
+    vm.errors = [];
 
     function valid() {
       var vm = this;
@@ -33,6 +34,8 @@
     function create() {
       var vm = this;
 
+      vm.errors = [];
+
       if (vm.valid()) {
 
         SignupResource
@@ -46,9 +49,15 @@
         .$promise
         .then(function success(signup) {
           $log.info(signup);
+          $location.path('/#/login');
         })
         .catch(function error(err) {
           $log.error(err);
+          if (err.status === 409) {
+            vm.errors.push('User with email already exists');
+          } else {
+            vm.errors = err.data;
+          }
         });
 
       }
