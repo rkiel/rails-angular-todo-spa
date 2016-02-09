@@ -54,7 +54,11 @@
         .catch(function error(err) {
           $log.error(err);
           if (err.status === 409) {
-            vm.errors.push('User with email already exists');
+            vm.errors.push('Unable to create.  Email already in use.');
+          } else if (500 <= err.status) {
+            vm.errors.push('Unable to create.  Services encountered an error.');
+          } else if (err.status < 0) {
+            vm.errors.push('Unable to create.  Services are not available.');
           } else {
             vm.errors = err.data;
           }
