@@ -5,9 +5,9 @@
   .module('application')
   .controller('SignupController', SignupController);
 
-  SignupController.$inject = ['$log','$location','SignupResource'];
+  SignupController.$inject = ['$log','$location','$mdToast','SignupResource'];
 
-  function SignupController($log,$location,SignupResource) {
+  function SignupController($log,$location,$mdToast,SignupResource) {
 
     var vm = this;
     vm.first    = '';
@@ -18,7 +18,6 @@
     vm.valid = valid;
     vm.create = create;
     vm.cancel = cancel;
-    vm.errors = [];
 
     function valid() {
       var vm = this;
@@ -48,19 +47,18 @@
         }})
         .$promise
         .then(function success(signup) {
-          $log.info(signup);
           $location.path('/#/login');
         })
         .catch(function error(err) {
           $log.error(err);
           if (err.status === 409) {
-            vm.errors.push('Unable to create.  Email already in use.');
+            $mdToast.show($mdToast.simple().textContent('Unable to create.  Email already in use.'));
           } else if (500 <= err.status) {
-            vm.errors.push('Unable to create.  Services encountered an error.');
+            $mdToast.show($mdToast.simple().textContent('Unable to create.  Services encountered an error.'));
           } else if (err.status < 0) {
-            vm.errors.push('Unable to create.  Services are not available.');
+            $mdToast.show($mdToast.simple().textContent('Unable to create.  Services are not available.'));
           } else {
-            vm.errors = err.data;
+            $mdToast.show($mdToast.simple().textContent('Unable to create.'));
           }
         });
 
