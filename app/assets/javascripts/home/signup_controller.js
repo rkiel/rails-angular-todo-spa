@@ -47,7 +47,7 @@
         }})
         .$promise
         .then(function success(signup) {
-          $location.path('/#/login');
+          $location.path('/login');
         })
         .catch(function error(err) {
           $log.error(err);

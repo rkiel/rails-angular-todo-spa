@@ -39,7 +39,7 @@
         })
         .$promise
         .then(function success(signup) {
-          $location.path('/#/todo');
+          $location.path('/todo');
         })
         .catch(function error(err) {
           $log.error(err);
@@ -59,9 +59,8 @@
     }
 
     function cancel() {
-      $location.path('/#/');
+      $location.path('/');
     }
   }
 
 })();
-

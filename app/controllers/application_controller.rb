@@ -14,8 +14,8 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_token
 
-  def authorize
-    redirect_to hornburg_approach_path unless current_token
+  def ensure_login_session
+    render json: nil, status: :unauthorized unless current_token
   end
 
 end

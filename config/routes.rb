@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     post '/signup', to: 'signup#create'
     post '/login', to: 'login#create'
     delete '/login', to: 'login#destroy'
+
+    get '/todo', to: 'todo#index'
   end
 
   root "home#index"

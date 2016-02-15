@@ -16,7 +16,7 @@
     })
     .$promise
     .then(function success(signup) {
-      $location.path('/#/');
+      $location.path('/');
     })
     .catch(function error(err) {
       $log.error("start");
