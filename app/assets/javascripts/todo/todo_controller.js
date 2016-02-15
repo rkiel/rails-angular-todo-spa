@@ -5,9 +5,9 @@
   .module('application')
   .controller('TodoController', TodoController);
 
-  TodoController.$inject = ['$log','$location','TodoResource'];
+  TodoController.$inject = ['Controller','TodoResource'];
 
-  function TodoController($log,$location,TodoResource) {
+  function TodoController(Controller,TodoResource) {
 
     var vm = this;
     vm.items = [];
@@ -20,7 +20,7 @@
     })
     .catch(function error(err) {
       $log.error(err);
-      $location.path('/login');
+      Controller.redirectToLogin();
     });
 
   }

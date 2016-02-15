@@ -5,32 +5,31 @@
   .module('application')
   .controller('LogoutController', LogoutController);
 
-  LogoutController.$inject = ['$log','$location','$mdToast','LoginResource'];
+  LogoutController.$inject = ['Controller','LoginResource'];
 
-  function LogoutController($log,$location,$mdToast,LoginResource) {
+  function LogoutController(Controller,LoginResource) {
 
     var vm = this;
 
-    LoginResource
-    .destroy({
-    })
-    .$promise
-    .then(function success(signup) {
-      $location.path('/');
-    })
-    .catch(function error(err) {
-      $log.error("start");
-      $log.error(err);
-      $log.error("end");
-      if (500 <= err.status) {
-        $mdToast.show($mdToast.simple().textContent('Unable to logout.  Services encountered an error.'));
-      } else if (err.status < 0) {
-        $mdToast.show($mdToast.simple().textContent('Unable to logout.  Services are not available.'));
-      } else {
-        $mdToast.show($mdToast.simple().textContent('Unable to logout.'));
-      }
-    });
+    destroyLogin(LoginResource,vm)
+    .then(Controller.redirectToHome)
+    .catch(Controller.errorNotification(errorMessage));
+  }
 
+  function destroyLogin(LoginResource, vm) {
+    return LoginResource
+           .destroy({ })
+           .$promise;
+  }
+
+  function errorMessage(err) {
+    if (500 <= err.status) {
+      return 'Unable to logout.  Services encountered an error.';
+    } else if (err.status < 0) {
+      return 'Unable to logout.  Services are not available.';
+    } else {
+      return 'Unable to logout.';
+    }
   }
 
 })();
