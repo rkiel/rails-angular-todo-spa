@@ -11,6 +11,13 @@
 
     $routeProvider
 
+    .when('/todo', {
+      templateUrl:      '<%= asset_path("todo/todo.html") %>',
+      controller:       'TodoController',
+      controllerAs:     'vm',
+      bindToController: true
+    })
+
     .when('/logout', {
       templateUrl:      '<%= asset_path("home/logout.html") %>',
       controller:       'LogoutController',
