@@ -39,13 +39,6 @@
       bindToController: true
     })
 
-    .when('/away', {
-      templateUrl:      '<%= asset_path("away/index.html") %>',
-      controller:       'AwayController',
-      controllerAs:     'vm',
-      bindToController: true
-    })
-
     .otherwise({redirectTo: '/'});
 
 
