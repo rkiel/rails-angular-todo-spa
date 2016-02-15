@@ -11,6 +11,13 @@
 
     $routeProvider
 
+    .when('/login', {
+      templateUrl:      '<%= asset_path("home/login.html") %>',
+      controller:       'LoginController',
+      controllerAs:     'vm',
+      bindToController: true
+    })
+
     .when('/signup', {
       templateUrl:      '<%= asset_path("home/signup.html") %>',
       controller:       'SignupController',
