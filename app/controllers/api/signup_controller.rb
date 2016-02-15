@@ -7,7 +7,7 @@ class API::SignupController < ApplicationController
     if User.find_by(email: user.email)
       render json: [], status: :conflict
     elsif user.save
-      render json: user, status: :ok, except: [:id, :password_digest, :uuid]
+      render json: user, status: :ok, except: User.private_fields
     else
       render json: user.errors, status: :bad_request
     end
