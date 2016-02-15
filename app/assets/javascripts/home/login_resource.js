@@ -10,6 +10,7 @@
   function LoginResource($resource) {
     return $resource('/api/login/:id', {id: '@id', format: 'json'}, {
       'create':  { method: 'POST' },
+      'destroy': { method: 'DELETE' }
     });
   }
 

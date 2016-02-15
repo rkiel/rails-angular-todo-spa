@@ -11,6 +11,13 @@
 
     $routeProvider
 
+    .when('/logout', {
+      templateUrl:      '<%= asset_path("home/logout.html") %>',
+      controller:       'LogoutController',
+      controllerAs:     'vm',
+      bindToController: true
+    })
+
     .when('/login', {
       templateUrl:      '<%= asset_path("home/login.html") %>',
       controller:       'LoginController',

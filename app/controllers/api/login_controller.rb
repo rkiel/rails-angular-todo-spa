@@ -14,6 +14,13 @@ class API::LoginController < ApplicationController
     end
   end
 
+  def destroy
+#    session[:jwt_token] = nil
+#    session.clear
+    reset_session
+    render json: nil, status: :ok
+  end
+
 private
 
   def user_params
