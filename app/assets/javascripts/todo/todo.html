@@ -5,6 +5,20 @@
 <a href="/#/logout">Logout</a>
 <a href="/#/todo">To Do</a>
 
-<ul>
-  <li ng-repeat="item in vm.items">{item.description}</li>
-</ul>
+<div ng-if="vm.loaded">
+
+  <div layout="row">
+    <md-input-container class="md-block" flex>
+      <label>Description</label>
+      <input ng-model="vm.description">
+    </md-input-container>
+    <div>
+      <md-button class="md-raised md-primary" ng-disabled="vm.description.length === 0" ng-click="vm.add()">Add</md-button>
+    </div>
+  </div>
+
+  <ul>
+    <li ng-repeat="item in vm.items">{{item.description}}</li>
+  </ul>
+
+</div>

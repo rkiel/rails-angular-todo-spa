@@ -11,6 +11,7 @@
 
     var vm = this;
     initialize(vm);
+    vm.add = add(TodoResource,vm);
 
     loadItems(TodoResource)
     .then(updateItems(vm))
@@ -25,6 +26,7 @@
 
   function updateItems(vm) {
     return function(items) {
+      vm.loaded = true;
       vm.items = items;
     };
   }
@@ -41,8 +43,26 @@
     }
   }
 
+  function add(TodoResource,vm) {
+    return function() {
+      TodoResource
+      .create({
+        todo: {
+          description: vm.description
+        }
+      })
+      .$promise
+        .then(function success(data) {
+          vm.items = data;
+        });
+      vm.description = '';
+    }
+  }
+
   function initialize(vm) {
     vm.items = [];
+    vm.loaded = false;
+    vm.description = '';
   }
 
 })();

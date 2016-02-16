@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     delete '/login', to: 'login#destroy'
 
     get '/todo', to: 'todo#index'
+    post '/todo', to: 'todo#create'
   end
 
   root "home#index"
