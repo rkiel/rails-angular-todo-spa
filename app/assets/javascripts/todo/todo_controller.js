@@ -11,8 +11,8 @@
 
     var vm = this;
     initialize(vm);
-    vm.add = add(TodoResource,vm);
-    vm.remove = remove(TodoResource,vm);
+    vm.add    = addItem(TodoResource,vm);
+    vm.remove = removeItem(TodoResource,vm);
 
     loadItems(TodoResource)
     .then(updateItems(vm))
@@ -23,13 +23,6 @@
     return TodoResource
            .index()
            .$promise;
-  }
-
-  function updateItems(vm) {
-    return function(items) {
-      vm.loaded = true;
-      vm.items = items;
-    };
   }
 
   function errorMessage(err) {
@@ -44,37 +37,44 @@
     }
   }
 
-  function remove(TodoResource,vm) {
+  function removeItem(TodoResource,vm) {
     return function(item) {
       TodoResource
       .destroy(item)
       .$promise
-      .then(function success(data) {
-         vm.items = data;
-      });
+      .then(updateItems(vm));
     }
   }
 
-  function add(TodoResource,vm) {
+  function addItem(TodoResource,vm) {
     return function() {
       TodoResource
-      .create({
-        todo: {
-          description: vm.description
-        }
-      })
+      .create(todoFrom(vm))
       .$promise
-        .then(function success(data) {
-          vm.items = data;
-        });
-      vm.description = '';
+      .then(updateItems(vm))
     }
+  }
+
+  function updateItems(vm) {
+    return function(data) {
+      vm.items = data;
+      vm.description = '';
+      vm.loaded = true;
+    };
+  }
+
+  function todoFrom(vm) {
+    return {
+      todo: {
+        description: vm.description
+      }
+    };
   }
 
   function initialize(vm) {
     vm.items = [];
-    vm.loaded = false;
     vm.description = '';
+    vm.loaded = false;
   }
 
 })();
