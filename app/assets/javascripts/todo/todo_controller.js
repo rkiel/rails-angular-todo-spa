@@ -10,19 +10,39 @@
   function TodoController(Controller,TodoResource) {
 
     var vm = this;
-    vm.items = [];
+    initialize(vm);
 
-    TodoResource
-    .index()
-    .$promise
-    .then(function success(items) {
+    loadItems(TodoResource)
+    .then(updateItems(vm))
+    .catch(Controller.errorNotification(errorMessage));
+  }
+
+  function loadItems(TodoResource) {
+    return TodoResource
+           .index()
+           .$promise;
+  }
+
+  function updateItems(vm) {
+    return function(items) {
       vm.items = items;
-    })
-    .catch(function error(err) {
-      $log.error(err);
-      Controller.redirectToLogin();
-    });
+    };
+  }
 
+  function errorMessage(err) {
+    if (err.status === 401) {
+      return 'Unable to authenticate.';
+    } else if (500 <= err.status) {
+     return  'Unable to authenticate.  Services encountered an error.';
+    } else if (err.status < 0) {
+      return 'Unable to authenticate.  Services are not available.';
+    } else {
+      return 'Unable to authenticate.';
+    }
+  }
+
+  function initialize(vm) {
+    vm.items = [];
   }
 
 })();
