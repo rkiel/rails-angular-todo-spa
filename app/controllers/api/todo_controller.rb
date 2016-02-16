@@ -15,6 +15,18 @@ class API::TodoController < ApplicationController
     end
   end
 
+  def destroy
+    todo = Todo.find_by(id: params[:id])
+    if todo
+      todo.destroy
+      todos = lookup
+      render json: todos, status: :ok
+    else
+      render json: todo.errors, status: :bad_request
+    end
+
+  end
+
   def index
     todos = lookup
     render json: todos, status: :ok

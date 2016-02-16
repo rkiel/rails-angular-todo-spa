@@ -12,6 +12,7 @@
     var vm = this;
     initialize(vm);
     vm.add = add(TodoResource,vm);
+    vm.remove = remove(TodoResource,vm);
 
     loadItems(TodoResource)
     .then(updateItems(vm))
@@ -40,6 +41,17 @@
       return 'Unable to authenticate.  Services are not available.';
     } else {
       return 'Unable to authenticate.';
+    }
+  }
+
+  function remove(TodoResource,vm) {
+    return function(item) {
+      TodoResource
+      .destroy(item)
+      .$promise
+      .then(function success(data) {
+         vm.items = data;
+      });
     }
   }
 

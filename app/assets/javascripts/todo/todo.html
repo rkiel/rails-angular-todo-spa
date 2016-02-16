@@ -17,8 +17,11 @@
     </div>
   </div>
 
-  <ul>
-    <li ng-repeat="item in vm.items">{{item.description}}</li>
-  </ul>
+  <md-list>
+    <md-list-item ng-repeat="item in vm.items">
+      <p>{{item.description}}</p>
+      <md-checkbox class="md-secondary" ng-click="vm.remove(item)"></md-checkbox>
+    </md-list-item>
+  </md-list>
 
 </div>

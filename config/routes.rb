@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
     get '/todo', to: 'todo#index'
     post '/todo', to: 'todo#create'
+    delete '/todo/:id', to: 'todo#destroy'
   end
 
   root "home#index"

@@ -10,6 +10,7 @@
   function TodoResource($resource) {
     return $resource('/api/todo/:id', {id: '@id', format: 'json'}, {
       'create':  { method: 'POST', isArray: true },
+      'destroy': { method: 'DELETE', isArray: true },
       'index': { method: 'GET', isArray: true }
     });
   }
