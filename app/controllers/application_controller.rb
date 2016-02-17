@@ -9,7 +9,17 @@ class ApplicationController < ActionController::Base
   after_filter :set_csrf_cookie_for_ng
 
   def current_token
-    @current_token ||= JsonWebToken.user_from(JsonWebToken.decode(session[:jwt_token])) if session[:jwt_token]
+    return @current_token if @current_token
+
+    return nil unless session[:jwt_token]
+
+    decoded = JsonWebToken.decode(session[:jwt_token])
+
+    if decoded
+      @current_token = JsonWebToken.user_from(decoded)
+    else
+      @current_token = nil
+    end
   end
 
   helper_method :current_token

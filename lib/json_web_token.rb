@@ -13,6 +13,10 @@ class JsonWebToken
     payload = HashWithIndifferentAccess.new payload
 
     payload
+
+  rescue JWT::ExpiredSignature
+    nil
+
   rescue
     # we don't need to trow errors, just return nil if JWT is invalid or expired
     nil
