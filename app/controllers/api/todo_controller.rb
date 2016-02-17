@@ -24,7 +24,6 @@ class API::TodoController < ApplicationController
     else
       render json: todo.errors, status: :bad_request
     end
-
   end
 
   def index
@@ -39,7 +38,7 @@ private
   end
 
   def lookup
-    Todo.where(uuid: current_token.uuid)
+    Todo.where(uuid: current_token.uuid).order(updated_at: :desc)
   end
 
 end
